@@ -17,12 +17,12 @@ services:
 
   # Servicio Backend (FastAPI)
   api: 
-    build: ./backend
+    build: ./api
     container_name: students_api
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app
+      - ./api:/app
     environment:
       - ENV=development
       - DATABASE_URL=postgresql://root:password@db:5432/students_db
@@ -32,12 +32,12 @@ services:
 
   #Servicio Frontend (Vite + React)
   web:
-    build: ./frontend
+    build: ./web
     container_name: students_front
     ports:
       - "5173:5173"
     volumes:
-      - ./frontend:/app
+      - ./web:/app
       - /app/node_modules
     environment:
       - VITE_API_URL=http://localhost:8000
